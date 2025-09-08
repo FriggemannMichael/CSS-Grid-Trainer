@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Grid Trainer - Interaktive Lernplattform</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>🎯 CSS Grid Trainer</h1>
+        <p>Lerne und übe alle CSS Grid Eigenschaften interaktiv!</p>
+    </header>
+
+    <nav class="main-nav">
+        <button class="nav-btn active" data-section="playground">Live Editor</button>
+        <button class="nav-btn" data-section="challenges">Challenges</button>
+        <button class="nav-btn" data-section="reference">Referenz</button>
+        <button class="nav-btn" data-section="visualizer">Grid Visualizer</button>
+    </nav>
+
+    <!-- Live Editor Section -->
+    <section id="playground" class="section active">
+        <h2>Live CSS Grid Editor</h2>
+        
+        <div class="editor-container">
+            <div class="controls-panel">
+                <h3>Container Eigenschaften</h3>
+                
+                <div class="control-group">
+                    <label>display:</label>
+                    <select id="display-type">
+                        <option value="grid">grid</option>
+                        <option value="inline-grid">inline-grid</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label>grid-template-columns:</label>
+                    <input type="text" id="grid-columns" value="1fr 1fr 1fr" placeholder="z.B. 1fr 1fr 1fr">
+                </div>
+
+                <div class="control-group">
+                    <label>grid-template-rows:</label>
+                    <input type="text" id="grid-rows" value="100px 100px" placeholder="z.B. 100px 100px">
+                </div>
+
+                <div class="control-group">
+                    <label>gap:</label>
+                    <input type="text" id="grid-gap" value="10px" placeholder="z.B. 10px">
+                </div>
+
+                <div class="control-group">
+                    <label>justify-items:</label>
+                    <select id="justify-items">
+                        <option value="stretch">stretch</option>
+                        <option value="start">start</option>
+                        <option value="end">end</option>
+                        <option value="center">center</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label>align-items:</label>
+                    <select id="align-items">
+                        <option value="stretch">stretch</option>
+                        <option value="start">start</option>
+                        <option value="end">end</option>
+                        <option value="center">center</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label>justify-content:</label>
+                    <select id="justify-content">
+                        <option value="start">start</option>
+                        <option value="end">end</option>
+                        <option value="center">center</option>
+                        <option value="stretch">stretch</option>
+                        <option value="space-around">space-around</option>
+                        <option value="space-between">space-between</option>
+                        <option value="space-evenly">space-evenly</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label>align-content:</label>
+                    <select id="align-content">
+                        <option value="start">start</option>
+                        <option value="end">end</option>
+                        <option value="center">center</option>
+                        <option value="stretch">stretch</option>
+                        <option value="space-around">space-around</option>
+                        <option value="space-between">space-between</option>
+                        <option value="space-evenly">space-evenly</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label>grid-auto-flow:</label>
+                    <select id="auto-flow">
+                        <option value="row">row</option>
+                        <option value="column">column</option>
+                        <option value="row dense">row dense</option>
+                        <option value="column dense">column dense</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label>grid-auto-columns:</label>
+                    <input type="text" id="auto-columns" placeholder="z.B. 100px">
+                </div>
+
+                <div class="control-group">
+                    <label>grid-auto-rows:</label>
+                    <input type="text" id="auto-rows" placeholder="z.B. 100px">
+                </div>
+
+                <h3>Item Eigenschaften</h3>
+                <div class="control-group">
+                    <label>Item auswählen:</label>
+                    <select id="item-selector">
+                        <option value="1">Item 1</option>
+                        <option value="2">Item 2</option>
+                        <option value="3">Item 3</option>
+                        <option value="4">Item 4</option>
+                        <option value="5">Item 5</option>
+                        <option value="6">Item 6</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label>grid-column:</label>
+                    <input type="text" id="item-column" placeholder="z.B. 1 / 3">
+                </div>
+
+                <div class="control-group">
+                    <label>grid-row:</label>
+                    <input type="text" id="item-row" placeholder="z.B. 1 / 2">
+                </div>
+
+                <div class="control-group">
+                    <label>justify-self:</label>
+                    <select id="justify-self">
+                        <option value="">default</option>
+                        <option value="start">start</option>
+                        <option value="end">end</option>
+                        <option value="center">center</option>
+                        <option value="stretch">stretch</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label>align-self:</label>
+                    <select id="align-self">
+                        <option value="">default</option>
+                        <option value="start">start</option>
+                        <option value="end">end</option>
+                        <option value="center">center</option>
+                        <option value="stretch">stretch</option>
+                    </select>
+                </div>
+
+                <button id="add-item" class="btn-primary">+ Item hinzufügen</button>
+                <button id="remove-item" class="btn-secondary">- Item entfernen</button>
+                <button id="reset-grid" class="btn-warning">Reset</button>
+            </div>
+
+            <div class="preview-panel">
+                <h3>Vorschau</h3>
+                <div id="grid-container" class="grid-preview">
+                    <div class="grid-item" data-item="1">1</div>
+                    <div class="grid-item" data-item="2">2</div>
+                    <div class="grid-item" data-item="3">3</div>
+                    <div class="grid-item" data-item="4">4</div>
+                    <div class="grid-item" data-item="5">5</div>
+                    <div class="grid-item" data-item="6">6</div>
+                </div>
+                
+                <div class="code-output">
+                    <h4>Generierter CSS Code:</h4>
+                    <pre id="css-output"></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Grid Builder Section -->
+    <section id="builder" class="section">
+        <h2>🏗️ Grid Builder - Drag & Drop</h2>
+        
+        <div class="builder-container">
+            <div class="builder-sidebar">
+                <h3>Baukasten Elemente</h3>
+                
+                <div class="element-palette">
+                    <h4>Ziehe Elemente ins Grid:</h4>
+                    <div class="draggable-elements">
+                        <div class="draggable-element" draggable="true" data-type="header" data-color="#667eea">
+                            <i>📰</i>Header
+                        </div>
+                        <div class="draggable-element" draggable="true" data-type="nav" data-color="#764ba2">
+                            <i>🧭</i>Navigation
+                        </div>
+                        <div class="draggable-element" draggable="true" data-type="sidebar" data-color="#48bb78">
+                            <i>📑</i>Sidebar
+                        </div>
+                        <div class="draggable-element" draggable="true" data-type="main" data-color="#4299e1">
+                            <i>📄</i>Main
+                        </div>
+                        <div class="draggable-element" draggable="true" data-type="footer" data-color="#2d3748">
+                            <i>📍</i>Footer
+                        </div>
+                        <div class="draggable-element" draggable="true" data-type="card" data-color="#f6ad55">
+                            <i>🎴</i>Card
+                        </div>
+                        <div class="draggable-element" draggable="true" data-type="image" data-color="#fc8181">
+                            <i>🖼️</i>Image
+                        </div>
+                        <div class="draggable-element" draggable="true" data-type="widget" data-color="#9f7aea">
+                            <i>📊</i>Widget
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-settings">
+                    <h4>Grid Einstellungen:</h4>
+                    <div class="control-group">
+                        <label>Spalten:</label>
+                        <input type="number" id="builder-cols" value="4" min="1" max="12">
+                    </div>
+                    <div class="control-group">
+                        <label>Zeilen:</label>
+                        <input type="number" id="builder-rows" value="4" min="1" max="12">
+                    </div>
+                    <div class="control-group">
+                        <label>Gap (px):</label>
+                        <input type="number" id="builder-gap" value="10" min="0" max="50">
+                    </div>
+                    <div class="control-group">
+                        <label>Cell Size:</label>
+                        <select id="builder-cell-size">
+                            <option value="100">Klein (100px)</option>
+                            <option value="120" selected>Normal (120px)</option>
+                            <option value="150">Groß (150px)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="builder-actions">
+                    <button id="apply-grid-settings" class="btn-primary">Grid anwenden</button>
+                    <button id="clear-builder" class="btn-warning">Grid leeren</button>
+                    <button id="auto-arrange" class="btn-secondary">Auto-Arrange</button>
+                </div>
+
+                <div class="placed-elements">
+                    <h4>Platzierte Elemente:</h4>
+                    <div id="elements-list"></div>
+                </div>
+            </div>
+
+            <div class="builder-main">
+                <div class="builder-toolbar">
+                    <button class="tool-btn active" data-tool="drag">
+                        <i>✋</i> Drag Mode
+                    </button>
+                    <button class="tool-btn" data-tool="resize">
+                        <i>↔️</i> Resize Mode
+                    </button>
+                    <button class="tool-btn" data-tool="delete">
+                        <i>🗑️</i> Delete Mode
+                    </button>
+                    <div class="toolbar-info">
+                        <span id="current-mode">Modus: Drag & Drop</span>
+                    </div>
+                </div>
+
+                <div class="builder-workspace">
+                    <div id="grid-builder" class="builder-grid">
+                        <!-- Grid wird dynamisch generiert -->
+                    </div>
+                    
+                    <div class="resize-handles" style="display: none;">
+                        <div class="resize-handle resize-right" data-direction="right">→</div>
+                        <div class="resize-handle resize-bottom" data-direction="bottom">↓</div>
+                        <div class="resize-handle resize-corner" data-direction="corner">↘</div>
+                    </div>
+                </div>
+
+                <div class="builder-output">
+                    <div class="output-tabs">
+                        <button class="output-tab active" data-output="css">CSS Code</button>
+                        <button class="output-tab" data-output="html">HTML Structure</button>
+                        <button class="output-tab" data-output="areas">Grid Areas</button>
+                    </div>
+                    
+                    <div class="output-content">
+                        <pre id="builder-css-output" class="output-panel active"></pre>
+                        <pre id="builder-html-output" class="output-panel"></pre>
+                        <pre id="builder-areas-output" class="output-panel"></pre>
+                    </div>
+                    
+                    <button id="copy-builder-code" class="btn-primary">
+                        <i>📋</i> Code kopieren
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Challenges Section -->
+    <section id="challenges" class="section">
+        <h2>CSS Grid Challenges</h2>
+        
+        <div class="challenge-selector">
+            <button class="challenge-btn" data-challenge="1">Challenge 1: Basis Grid</button>
+            <button class="challenge-btn" data-challenge="2">Challenge 2: Responsive Layout</button>
+            <button class="challenge-btn" data-challenge="3">Challenge 3: Grid Areas</button>
+            <button class="challenge-btn" data-challenge="4">Challenge 4: Auto-Placement</button>
+            <button class="challenge-btn" data-challenge="5">Challenge 5: Nested Grids</button>
+        </div>
+
+        <div id="challenge-container">
+            <div class="challenge-info">
+                <h3 id="challenge-title">Wähle eine Challenge</h3>
+                <p id="challenge-description">Klicke auf eine der Challenges oben, um zu beginnen.</p>
+                <div id="challenge-target" class="target-preview"></div>
+            </div>
+
+            <div class="challenge-editor">
+                <h4>Dein CSS Code:</h4>
+                <textarea id="challenge-css" placeholder="/* Schreibe hier deinen CSS Code */"></textarea>
+                <button id="check-solution" class="btn-primary">Lösung prüfen</button>
+                <button id="show-hint" class="btn-secondary">Hinweis</button>
+                <div id="challenge-result"></div>
+                <div id="challenge-preview" class="challenge-grid"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reference Section -->
+    <section id="reference" class="section">
+        <h2>CSS Grid Referenz</h2>
+        
+        <div class="reference-container">
+            <div class="property-cards">
+                <div class="property-card">
+                    <h3>Container Properties</h3>
+                    <ul>
+                        <li><strong>display: grid</strong> - Erstellt einen Grid Container</li>
+                        <li><strong>grid-template-columns</strong> - Definiert Spalten</li>
+                        <li><strong>grid-template-rows</strong> - Definiert Zeilen</li>
+                        <li><strong>grid-template-areas</strong> - Definiert benannte Grid-Bereiche</li>
+                        <li><strong>gap</strong> - Abstand zwischen Grid-Items</li>
+                        <li><strong>justify-items</strong> - Horizontale Ausrichtung der Items</li>
+                        <li><strong>align-items</strong> - Vertikale Ausrichtung der Items</li>
+                        <li><strong>justify-content</strong> - Horizontale Ausrichtung des Grids</li>
+                        <li><strong>align-content</strong> - Vertikale Ausrichtung des Grids</li>
+                        <li><strong>grid-auto-columns</strong> - Größe automatisch erstellter Spalten</li>
+                        <li><strong>grid-auto-rows</strong> - Größe automatisch erstellter Zeilen</li>
+                        <li><strong>grid-auto-flow</strong> - Auto-Placement Algorithmus</li>
+                    </ul>
+                </div>
+
+                <div class="property-card">
+                    <h3>Item Properties</h3>
+                    <ul>
+                        <li><strong>grid-column-start</strong> - Startspalte</li>
+                        <li><strong>grid-column-end</strong> - Endspalte</li>
+                        <li><strong>grid-row-start</strong> - Startzeile</li>
+                        <li><strong>grid-row-end</strong> - Endzeile</li>
+                        <li><strong>grid-column</strong> - Kurzform für column-start/end</li>
+                        <li><strong>grid-row</strong> - Kurzform für row-start/end</li>
+                        <li><strong>grid-area</strong> - Kurzform oder benannter Bereich</li>
+                        <li><strong>justify-self</strong> - Horizontale Selbstausrichtung</li>
+                        <li><strong>align-self</strong> - Vertikale Selbstausrichtung</li>
+                        <li><strong>place-self</strong> - Kurzform für justify-self/align-self</li>
+                    </ul>
+                </div>
+
+                <div class="property-card">
+                    <h3>Einheiten & Funktionen</h3>
+                    <ul>
+                        <li><strong>fr</strong> - Fraction Unit (flexible Einheit)</li>
+                        <li><strong>repeat()</strong> - Wiederholt Muster</li>
+                        <li><strong>minmax()</strong> - Min/Max Größe</li>
+                        <li><strong>fit-content()</strong> - Passt sich dem Inhalt an</li>
+                        <li><strong>auto-fill</strong> - Füllt mit Tracks</li>
+                        <li><strong>auto-fit</strong> - Passt Tracks an</li>
+                        <li><strong>span</strong> - Überspannt mehrere Tracks</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="examples-section">
+                <h3>Beispiele</h3>
+                <div class="example-tabs">
+                    <button class="example-tab active" data-example="basic">Basic Grid</button>
+                    <button class="example-tab" data-example="responsive">Responsive</button>
+                    <button class="example-tab" data-example="areas">Grid Areas</button>
+                    <button class="example-tab" data-example="auto">Auto-Placement</button>
+                </div>
+                <div id="example-code" class="example-display">
+                    <pre></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Grid Visualizer Section -->
+    <section id="visualizer" class="section">
+        <h2>Grid Visualizer</h2>
+        
+        <div class="visualizer-container">
+            <div class="visualizer-controls">
+                <h3>Grid Setup</h3>
+                <div class="control-group">
+                    <label>Spalten:</label>
+                    <input type="number" id="viz-cols" value="3" min="1" max="12">
+                </div>
+                <div class="control-group">
+                    <label>Zeilen:</label>
+                    <input type="number" id="viz-rows" value="3" min="1" max="12">
+                </div>
+                <div class="control-group">
+                    <label>Zeige Grid-Linien:</label>
+                    <input type="checkbox" id="show-lines" checked>
+                </div>
+                <div class="control-group">
+                    <label>Zeige Grid-Nummern:</label>
+                    <input type="checkbox" id="show-numbers" checked>
+                </div>
+                <div class="control-group">
+                    <label>Template:</label>
+                    <select id="viz-template">
+                        <option value="equal">Gleichmäßig</option>
+                        <option value="responsive">Responsive</option>
+                        <option value="asymmetric">Asymmetrisch</option>
+                        <option value="custom">Custom</option>
+                    </select>
+                </div>
+                <button id="generate-viz" class="btn-primary">Grid generieren</button>
+                
+                <h3 style="margin-top: 2rem;">Standard Layouts</h3>
+                <div class="layout-buttons">
+                    <button class="layout-btn" data-layout="business-left">Business App (Menu Links)</button>
+                    <button class="layout-btn" data-layout="business-right">Business App (Menu Rechts)</button>
+                    <button class="layout-btn" data-layout="website-classic">Website Classic</button>
+                    <button class="layout-btn" data-layout="dashboard">Dashboard</button>
+                    <button class="layout-btn" data-layout="blog">Blog Layout</button>
+                    <button class="layout-btn" data-layout="ecommerce">E-Commerce</button>
+                    <button class="layout-btn" data-layout="portfolio">Portfolio Grid</button>
+                    <button class="layout-btn" data-layout="magazine">Magazine Style</button>
+                </div>
+            </div>
+
+            <div class="visualizer-display">
+                <div id="grid-visualizer"></div>
+                <div class="grid-info">
+                    <h4>Grid Informationen:</h4>
+                    <div id="grid-stats"></div>
+                    <h4 style="margin-top: 1rem;">Layout CSS:</h4>
+                    <pre id="layout-css"></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>CSS Grid Trainer - Lerne Grid interaktiv! 🚀</p>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>
